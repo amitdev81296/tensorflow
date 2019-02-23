@@ -1,0 +1,22 @@
+Building the neural network requires configuring the layers of the model, then compiling the model.
+
+The basic building block of a neural network is the layer. Layers extract representations from the data fed into them. And, hopefully, these representations are more meaningful for the problem at hand.
+
+Most of deep learning consists of chaining together simple layers. Most layers, like tf.keras.layers.Dense, have parameters that are learned during training.
+
+The first layer in this network, tf.keras.layers.Flatten, transforms the format of the images from a 2d-array (of 28 by 28 pixels), to a 1d-array of 28 * 28 = 784 pixels. Think of this layer as unstacking rows of pixels in the image and lining them up. This layer has no parameters to learn; it only reformats the data.
+
+After the pixels are flattened, the network consists of a sequence of two tf.keras.layers.Dense layers. These are densely-connected, or fully-connected, neural layers. The first Dense layer has 128 nodes (or neurons). The second (and last) layer is a 10-node softmax layer—this returns an array of 10 probability scores that sum to 1. Each node contains a score that indicates the probability that the current image belongs to one of the 10 classes.
+
+Compiling the model involves addtion of the settings given below
+1. Loss function —This measures how accurate the model is during training. We want to minimize this function to "steer" the model in the right direction.
+2. Optimizer —This is how the model is updated based on the data it sees and its loss function.
+3. Metrics —Used to monitor the training and testing steps. The following example uses accuracy, the fraction of the images that are correctly classified.
+
+Training the neural network model requires the following steps:
+1. Feed the training data to the model—in this example, the train_images and train_labels arrays.
+2. The model learns to associate images and labels.
+3. We ask the model to make predictions about a test set—in this example, the test_images array. We verify that the predictions match the labels from the test_labels array.
+
+Evaluating the accuracy using the test dataset
+It turns out, the accuracy on the test dataset is a little less than the accuracy on the training dataset. This gap between training accuracy and test accuracy is an example of overfitting. Overfitting is when a machine learning model performs worse on new data than on their training data.
